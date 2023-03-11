@@ -4,11 +4,11 @@ import Product from './../models/Product'
 import React, { useEffect, useState } from 'react'
 export async function getServerSideProps() {
   // const res = await fetch('http://localhost:3000/api/getproducts')
-  const res = await Product.find()
+  const res = await Product.find({ catagory: "mug" })
   // let products = await res.json()
   let products = await JSON.parse(JSON.stringify(res))
   // products = await products.products.filter((item) => (item.catagory == 'mug') && item)
-  products = await products.filter((item) => (item.catagory == 'Hoddie') && item)
+  // products = await products.filter((item) => (item.catagory == 'mug') && item)
 
   return {
     props: {
