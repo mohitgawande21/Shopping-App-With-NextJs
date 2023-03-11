@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "crypto-js": "^4.1.1",
+    "dotenv": "^16.0.3",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.9.1",
     "next": "^13.2.3",
