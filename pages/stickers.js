@@ -1,11 +1,14 @@
 import React from 'react'
 import Link from 'next/link'
 import { LazyLoadImage } from "react-lazy-load-image-component";
-
+import Product from './../models/Product'
 export async function getServerSideProps() {
-  const res = await fetch('http://localhost:3000/api/getproducts')
-  let products = await res.json()
-  products = await products.products.filter((item) => (item.catagory == 'sticker') && item)
+   // const res = await fetch('http://localhost:3000/api/getproducts')
+   const res = await Product.find()
+   // let products = await res.json()
+   let products = await JSON.parse(JSON.stringify(res))
+   // products = await products.products.filter((item) => (item.catagory == 'mug') && item)
+   products = await products.filter((item) => (item.catagory == 'sticker') && item)
 
   return {
     props: {

@@ -1,10 +1,14 @@
 import React from 'react'
 import Link from 'next/link'
+import Product from './../models/Product'
 import { LazyLoadImage } from "react-lazy-load-image-component";
 export async function getServerSideProps() {
-  const res = await fetch('http://localhost:3000/api/getproducts')
-  let products = await res.json()
-  products = await products.products.filter((item) => (item.catagory == 'Hoddie') && item)
+  // const res = await fetch('http://localhost:3000/api/getproducts')
+  const res = await Product.find()
+  // let products = await res.json()
+  let products = await JSON.parse(JSON.stringify(res))
+  // products = await products.products.filter((item) => (item.catagory == 'Hoddie') && item)
+  products = await products.filter((item) => (item.catagory == 'Hoddie') && item)
 
   return {
     props: {
@@ -12,8 +16,8 @@ export async function getServerSideProps() {
     },
   }
 }
-export default function hoodies({products}) {
-  
+export default function hoodies({ products }) {
+
   return (
     <div>
       <section className="text-gray-600 body-font">
